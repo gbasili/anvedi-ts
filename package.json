@@ -1,0 +1,36 @@
+{
+  "name": "anvedi-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/src/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node ./dist/src/server.js",
+    "test": "tap -r ./dist/tests/app.test.js --reporter=list"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbasili/anvedi-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gbasili/anvedi-ts/issues"
+  },
+  "homepage": "https://github.com/gbasili/anvedi-ts#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.17.0",
+    "fastify-plugin": "^3.0.0",
+    "pino-pretty": "^5.0.2",
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2",
+    "tap": "^15.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.1",
+    "@types/tap": "^15.0.2",
+    "@types/validator": "^13.1.3"
+  }
+}
