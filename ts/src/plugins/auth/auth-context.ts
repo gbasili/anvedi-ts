@@ -2,7 +2,7 @@
 import { Permission, PermissionModel } from './entities/permission'
 import { Sequelize, Model, DataTypes } from "sequelize";
 import SequelizeContext from "../anvedi/data/sequelize/sequelize-context";
-import { IAuthContext } from './IAuthContext';
+import { IAuthContext } from './i-auth-context';
 
 export const AuthContextGetInstance = function(options: any) : IAuthContext {
     const sequelize = new Sequelize(

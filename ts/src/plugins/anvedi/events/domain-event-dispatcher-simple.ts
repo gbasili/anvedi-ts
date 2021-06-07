@@ -1,5 +1,5 @@
 'use strict'
-import { IDomainEvent } from "../domain/events/IDomainEvent";
+import { IDomainEvent } from "../domain/events/i-domain-event";
 
 export class DomainEventDispatcherSimple {
 

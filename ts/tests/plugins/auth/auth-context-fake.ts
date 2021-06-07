@@ -1,7 +1,7 @@
 'use strict'
 
 import { Permission } from "../../../src/plugins/auth/entities/permission";
-import { IAuthContext } from "../../../src/plugins/auth/IAuthContext";
+import { IAuthContext } from "../../../src/plugins/auth/i-auth-context";
 
 class AuthContextFake implements IAuthContext{
     permissions: typeof Permission;

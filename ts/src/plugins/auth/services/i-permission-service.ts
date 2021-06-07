@@ -1,5 +1,5 @@
 'use strict'
-import { IQueryService } from '../../anvedi/services/IQueryService'
+import { IQueryService } from '../../anvedi/services/i-query-service'
 import { IPermissionCreateRequest } from '../use-case/permission-create'
 import { IPermissionReadOneRequest, IPermissionReadAllRequest } from '../use-case/permission-read'
 import { IPermissionUpdateRequest } from '../use-case/permission-update'

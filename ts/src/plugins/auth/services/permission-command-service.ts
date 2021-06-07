@@ -1,8 +1,8 @@
 'use strict'
-import { IPermissionCommandService } from "./IPermissionService";
+import { IPermissionCommandService } from "./i-permission-service";
 import UC from '../use-case/index'
 import PermissionDTO from '../dto/permission'
-import { IAuthContext } from "../IAuthContext";
+import { IAuthContext } from "../i-auth-context";
 import { IPermissionCreateRequest } from "../use-case/permission-create";
 import { IPermissionDeleteRequest } from "../use-case/permission-delete";
 import { IPermissionUpdateRequest } from "../use-case/permission-update";

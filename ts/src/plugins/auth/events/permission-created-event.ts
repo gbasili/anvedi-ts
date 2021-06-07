@@ -1,4 +1,4 @@
-import { IDomainEvent } from "../../anvedi/domain/events/IDomainEvent";
+import { IDomainEvent } from "../../anvedi/domain/events/i-domain-event";
 
 export class PermissionCreatedEvent implements IDomainEvent {
   

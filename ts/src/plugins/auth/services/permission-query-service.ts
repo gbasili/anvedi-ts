@@ -1,9 +1,9 @@
 'use strict'
-import { IPermissionQueryService } from "./IPermissionService";
+import { IPermissionQueryService } from "./i-permission-service";
 import { IPermissionReadOneRequest, IPermissionReadAllRequest } from "../use-case/permission-read";
 import UC from '../use-case/index'
 import K from '../../anvedi/constants'
-import { IAuthContext } from "../IAuthContext";
+import { IAuthContext } from "../i-auth-context";
 import Mapper from '../mappers/permission-mapper'
 import QueryHelper from '../../anvedi/data/sequelize/query-helper'
 
