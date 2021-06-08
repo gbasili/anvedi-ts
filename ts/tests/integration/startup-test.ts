@@ -1,8 +1,8 @@
 'use strict'
-import { rPermissions } from '../routes/auth/permission'
-import config from '../config'
-import IStartUp from './i-startup'
-import StartUp from './startup'
+import { rPermissions } from '../../src/routes/auth/permission'
+import config from '../../src/config'
+import IStartUp from '../../src/infrastructure/i-startup'
+import StartUp from '../../src/infrastructure/startup'
 
 class StartUpTest extends StartUp implements IStartUp {
     

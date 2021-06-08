@@ -1,9 +1,9 @@
 'use strict'
 import { rPermissions } from '../routes/auth/permission'
-import * as authContext  from '../plugins/auth/auth-context'
+import * as authContext  from '../plugins/auth/data/auth-context'
 import config from '../config'
 import IStartUp from './i-startup'
-import { AuthContextGetInstance } from '../plugins/auth/auth-context'
+import { AuthContextGetInstance } from '../plugins/auth/data/auth-context'
 
 class StartUp implements IStartUp {
     
@@ -19,7 +19,7 @@ class StartUp implements IStartUp {
     }
 
     public registerPlugins(fastify: any, options: any) {
-        //
+        fastify.register(import('../plugins/auth/auth-container-plugin'), options)
     }
 
     public registerRoutes(fastify: any, options: any) {

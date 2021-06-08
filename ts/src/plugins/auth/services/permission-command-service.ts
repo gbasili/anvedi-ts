@@ -2,7 +2,7 @@
 import { IPermissionCommandService } from "./i-permission-service";
 import UC from '../use-case/index'
 import PermissionDTO from '../dto/permission'
-import { IAuthContext } from "../i-auth-context";
+import { IAuthContext } from "../data/i-auth-context";
 import { IPermissionCreateRequest } from "../use-case/permission-create";
 import { IPermissionDeleteRequest } from "../use-case/permission-delete";
 import { IPermissionUpdateRequest } from "../use-case/permission-update";
@@ -22,7 +22,7 @@ export class PermissionCommandService implements IPermissionCommandService {
     async Create(useCase: IPermissionCreateRequest):  Promise<any> {
         try {
              const t = await this.authContext.beginTransaction()
-             const permission: any = await this.authContext.permissions.create<Permission>(useCase.data, { transaction: t });
+             const permission: any = await this.authContext.permissionRepository.create(useCase.data, { transaction: t });
              useCase.data.Id = permission.Id
              this.authContext.commit()
              DomainEventDispatcherSimple.Dispatch(new PermissionCreatedEvent(permission))
@@ -37,7 +37,7 @@ export class PermissionCommandService implements IPermissionCommandService {
     async Delete(useCase: IPermissionDeleteRequest): Promise<any> {
         try {
             const t = await this.authContext.beginTransaction()
-            var p = await this.authContext.permissions.findByPk(useCase.id);
+            var p = await this.authContext.permissionRepository.readById(useCase.id);
             if (p == null){
                 return new UC.Delete.PermissionDeleteResponse(K.ResulCode.NOT_FOUND)
             }
@@ -54,7 +54,7 @@ export class PermissionCommandService implements IPermissionCommandService {
     async Update(useCase: IPermissionUpdateRequest): Promise<any> {
         try {
             const t = await this.authContext.beginTransaction()
-            var p = await this.authContext.permissions.findByPk(useCase.data.Id);
+            var p = await this.authContext.permissionRepository.readById(useCase.data.Id);
             if (p == null){
                 return new UC.Update.PermissionUpdateResponse(useCase.data, K.ResulCode.NOT_FOUND)
             }

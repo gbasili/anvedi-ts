@@ -1,7 +1,7 @@
 'use strict'
 import tap from 'tap'
 import config  from '../src/config'
-import StartUp  from '../src/infrastructure/startup-test'
+import StartUp  from './integration/startup-test'
 import Helper from './helper'
 const helper = new Helper()
 const startUp: StartUp = new StartUp()

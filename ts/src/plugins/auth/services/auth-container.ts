@@ -1,16 +1,16 @@
 'use strict'
 
-import { IAuthContext } from "../../plugins/auth/i-auth-context";
-import { IPermissionCommandService, IPermissionQueryService } from "../../plugins/auth/services/i-permission-service";
-import { PermissionCommandService } from "../../plugins/auth/services/permission-command-service";
-import { PermissionQueryService } from "../../plugins/auth/services/permission-query-service";
+import { IAuthContext } from "../data/i-auth-context";
+import { IPermissionCommandService, IPermissionQueryService } from "./i-permission-service";
+import { PermissionCommandService } from "./permission-command-service";
+import { PermissionQueryService } from "./permission-query-service";
 
-export interface IContainer {
+export interface IAuthContainer {
     GetPermissionCommandService(authContext: IAuthContext) : IPermissionCommandService
     GetPermissionQueryService(authContext: IAuthContext) : IPermissionQueryService
 }
 
-export class Container implements IContainer {
+export class AuthContainer implements IAuthContainer {
     
     GetPermissionCommandService(authContext: IAuthContext) : IPermissionCommandService
     {

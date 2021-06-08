@@ -3,7 +3,7 @@ import { IPermissionQueryService } from "./i-permission-service";
 import { IPermissionReadOneRequest, IPermissionReadAllRequest } from "../use-case/permission-read";
 import UC from '../use-case/index'
 import K from '../../anvedi/constants'
-import { IAuthContext } from "../i-auth-context";
+import { IAuthContext } from "../data/i-auth-context";
 import Mapper from '../mappers/permission-mapper'
 import QueryHelper from '../../anvedi/data/sequelize/query-helper'
 
@@ -16,7 +16,7 @@ export class PermissionQueryService implements IPermissionQueryService {
 
     async ReadOne(useCase: IPermissionReadOneRequest): Promise<any> {
         try {
-            const entity = await this.authContext.permissions.findByPk(useCase.id);
+            const entity = await this.authContext.permissionRepository.readById(useCase.id);
             if (entity == null){
                 return new UC.Read.PermissionReadOneResponse(null, K.ResulCode.NOT_FOUND) 
             }
@@ -32,9 +32,9 @@ export class PermissionQueryService implements IPermissionQueryService {
         try {
             const where = QueryHelper.GetWhere(useCase.queryAtoms);
             const options = QueryHelper.GetOptions(where, useCase.queryAtoms, useCase.sortingAtoms, useCase.pager, useCase.includeAtoms, useCase.loadAtoms);
-            const entities = await this.authContext.permissions.findAll(options);
+            const entities = await this.authContext.permissionRepository.readAll(options);
             const permissions = Mapper.PermissionMapper.ToDtos(entities)
-            const total = await this.authContext.permissions.count({ where: where });
+            const total = await this.authContext.permissionRepository.count({ where: where });
             return new UC.Read.PermissionReadAllResponse(permissions, total, K.ResulCode.OK)
         } catch(ex) {
             console.log(ex)

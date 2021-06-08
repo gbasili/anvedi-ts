@@ -1,8 +1,8 @@
 'use strict'
 import tap from 'tap'
-import config  from '../../../src/config'
-import StartUp  from '../../../src/infrastructure/startup-test'
-import Helper  from '../../helper'
+import config  from '../../../../src/config'
+import StartUp  from '../../startup-test'
+import Helper  from '../../../helper'
 const helper = new Helper()
 const startUp: StartUp = new StartUp()
 

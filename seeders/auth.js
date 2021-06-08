@@ -4,14 +4,14 @@ const helper  = require('./helper.js').SeedHelper
 
 // models
 function seedContext() {
-    var authContext = require('../dist/src/plugins/auth/auth-context.js').AuthContextGetInstance(config)
+    var authContext = require('../dist/src/plugins/auth/data/auth-context.js').AuthContextGetInstance(config)
     
     authContext.sequelize.sync({ force: true}).then(() => {
         initPermissions(authContext)
     })
 
     async function initPermissions(authContext) {
-        await authContext.permissions.bulkCreate([
+        await authContext.permissionRepository.bulkCreate([
             { Code: 'P01', Name: 'P01 Name' },
             { Code: 'P02', Name: 'P02 Name' },
             { Code: 'P03', Name: 'P03 Name' },
