@@ -5,12 +5,54 @@ const helper  = require('./helper.js').SeedHelper
 // models
 function seedContext() {
     var authContext = require('../dist/src/plugins/auth/data/auth-context.js').AuthContextGetInstance(config)
+    var geoContext = require('../dist/src/plugins/geo/data/geo-context.js').GeoContextGetInstance(config)
     
     authContext.sequelize.sync({ force: true}).then(() => {
-        initPermissions(authContext)
+        seedAuthPermissions(authContext)
+        geoContext.sequelize.sync({ force: true}).then(() => {
+            seedGeoRegion()
+        })
     })
 
-    async function initPermissions(authContext) {
+    async function seedGeoRegion() {
+        await geoContext.regionRepository.bulkCreate([
+            { Code: 'APAC' },
+            { Code: 'EMEA' },
+            { Code: 'LATAM' },
+            { Code: 'NAFTA' },
+        ]).then(() => {
+            seedGeoCountry()
+        })
+    }
+
+    async function seedGeoCountry(){
+        await geoContext.countryRepository.bulkCreate([
+            { Code: 'el-GR', IsoCode2: 'el', Name: 'Greece', RegionId: 2 },
+            { Code: 'it-IT', IsoCode2: 'it', Name: 'Italia', RegionId: 2 }
+        ]).then(() => {
+            seedGeoState()
+        })
+    }
+
+    async function seedGeoState(){
+        await geoContext.stateRepository.bulkCreate([
+            { Code: 'abruzzo', Name: 'Abruzzo', CountryId: 2 },
+            { Code: 'lazzio',  Name: 'lazzio',  CountryId: 2 }
+        ]).then(() => {
+            seedGeoCity()
+        })
+    }
+
+    async function seedGeoCity(){
+        await geoContext.cityRepository.bulkCreate([
+            { Code: 'pe', Name: 'Pescara', StateId: 1 },
+            { Code: 'te', Name: 'Teramo',  StateId: 1 },
+            { Code: 'rm', Name: 'Roma',    StateId: 2 },
+            { Code: 'vt', Name: 'Viterbo', StateId: 2 },
+        ])
+    }
+
+    async function seedAuthPermissions(authContext) {
         await authContext.permissionRepository.bulkCreate([
             { Code: 'P01', Name: 'P01 Name' },
             { Code: 'P02', Name: 'P02 Name' },

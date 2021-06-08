@@ -2,6 +2,7 @@
 import IStartUp from '../../src/infrastructure/i-startup'
 import StartUp from '../../src/infrastructure/startup'
 import { AuthContextFake } from './plugins/auth/data/auth-context-fake'
+import { GeoContextFake } from './plugins/geo/data/geo-context-fake'
 
 class StartUpUnitTest extends StartUp implements IStartUp {
     
@@ -11,8 +12,10 @@ class StartUpUnitTest extends StartUp implements IStartUp {
 
     public registerHooks(fastify: any, options: any) {
         fastify.decorateRequest('authContext', null)
+        fastify.decorateRequest('geoContext', null)
         fastify.addHook('onRequest', async (request: any, reply: any) => {
             request.authContext = new AuthContextFake()
+            request.geoContext = new GeoContextFake()
         })
     }
 

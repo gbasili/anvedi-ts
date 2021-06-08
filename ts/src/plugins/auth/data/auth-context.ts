@@ -1,6 +1,6 @@
 'use strict'
-import { Permission, PermissionModel } from '../entities/permission'
-import { Sequelize, Model, DataTypes } from "sequelize";
+import { PermissionModel } from '../models/permission'
+import { Sequelize } from "sequelize";
 import SequelizeContext from "../../anvedi/data/sequelize/sequelize-context";
 import { IAuthContext } from './i-auth-context';
 import { IPermissionRepository, PermissionRepository } from './repositories/permission-repository';

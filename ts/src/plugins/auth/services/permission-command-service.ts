@@ -8,7 +8,7 @@ import { IPermissionDeleteRequest } from "../use-case/permission-delete";
 import { IPermissionUpdateRequest } from "../use-case/permission-update";
 import K from '../../anvedi/constants'
 import Mapper from '../mappers/permission-mapper'
-import { Permission } from "../entities/permission";
+import { Permission } from "../models/permission";
 import { PermissionCreatedEvent } from "../events/permission-created-event";
 import { DomainEventDispatcherSimple } from "../../anvedi/events/domain-event-dispatcher-simple";
 

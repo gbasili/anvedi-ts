@@ -1,16 +1,14 @@
 'use strict'
-import S from 'sequelize';
 import { Sequelize, Model, DataTypes } from "sequelize";
-import { IModel } from '../../anvedi/domain/data/i-model';
 import BaseEntity from '../../anvedi/domain/entities/base-entity'
 import K from '../constants'
 
-class Permission extends BaseEntity {
+class City extends BaseEntity {
     
 }
 
-const PermissionModel = function(sequelize: Sequelize) : typeof Permission {
-  Permission.init({
+const CityModel = function(sequelize: Sequelize) : typeof City {
+    City.init({
         // Model attributes are defined here
         Id: {
             primaryKey: true,
@@ -19,24 +17,25 @@ const PermissionModel = function(sequelize: Sequelize) : typeof Permission {
             allowNull: false
         },
         Code: {
-            type: DataTypes.STRING(K.DataLength.Permission.Code),
+            type: DataTypes.STRING(K.DataLength.City.Code),
             allowNull: false
         },
         Name: {
-            type: DataTypes.STRING(K.DataLength.Permission.Name),
+            type: DataTypes.STRING(K.DataLength.City.Name),
             allowNull: false
         }
     }, {
         // Other model options go here
         sequelize, // We need to pass the connection instance
-        modelName: 'Permission', // We need to choose the model name,
+        modelName: 'City', // We need to choose the model name,
         timestamps: false,
-        tableName: 'USR_Permission'
+        tableName: 'GEO_City'
     });
-    return Permission;
+    
+    return City;
 }
 
 export {
-    Permission,
-    PermissionModel
+    City,
+    CityModel
 }

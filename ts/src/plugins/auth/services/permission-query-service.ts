@@ -31,7 +31,7 @@ export class PermissionQueryService implements IPermissionQueryService {
     async ReadAll(useCase: IPermissionReadAllRequest): Promise<any> {
         try {
             const where = QueryHelper.GetWhere(useCase.queryAtoms);
-            const options = QueryHelper.GetOptions(where, useCase.queryAtoms, useCase.sortingAtoms, useCase.pager, useCase.includeAtoms, useCase.loadAtoms);
+            const options = QueryHelper.GetOptions(where, useCase.queryAtoms, useCase.sortingAtoms, useCase.pager, useCase.loadAtoms, useCase.includeAtoms);
             const entities = await this.authContext.permissionRepository.readAll(options);
             const permissions = Mapper.PermissionMapper.ToDtos(entities)
             const total = await this.authContext.permissionRepository.count({ where: where });

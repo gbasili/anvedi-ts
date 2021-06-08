@@ -1,6 +1,6 @@
 'use strict'
 
-import { Permission } from "../entities/permission";
+import { Permission } from "../models/permission";
 import { IPermissionRepository } from "./repositories/permission-repository";
 
 export interface IAuthContext {

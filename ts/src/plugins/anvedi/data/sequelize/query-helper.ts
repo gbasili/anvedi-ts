@@ -23,7 +23,7 @@ const GetOptions = function(where: any, queryAtoms: any, sortingAtoms: any, page
     // loadAtoms
     const includes = GetIncludes(includeAtoms)
     if (includes ){
-        options.includes = includes
+        options.include = includes
     }
     // loadAtoms
     const attributes = GetAttributes(loadAtoms)
@@ -52,6 +52,18 @@ const GetIncludes = function(includeAtoms: any){
             includes.push(includeAtoms[i])
         }
     }
+    return [{ 
+        association: 'Countries', 
+        attributes: ['Id', 'Code', 'IsoCode2', 'Name'], 
+        include: { 
+            association: 'States',
+            attributes: ['Id', 'Code', 'Name'],
+            include: { 
+                association: 'Cities',
+                attributes: ['Id', 'Code', 'Name'],
+            }
+        }
+    }]
     return includes
 }
 

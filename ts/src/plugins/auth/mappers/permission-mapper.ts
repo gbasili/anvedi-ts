@@ -1,6 +1,5 @@
 'use strict'
 import PermissionDTO from '../dto/permission'
-import { Permission } from '../entities/permission';
 
 class PermissionMapper {
 
@@ -9,14 +8,14 @@ class PermissionMapper {
         entity.Name = dto.Name;
     }
 
-    static ToDto(entities: any): PermissionDTO {
-        return new PermissionDTO(entities.Id, entities.Code, entities.Name)
+    static ToDto(model: any): PermissionDTO {
+        return new PermissionDTO(model.Id, model.Code, model.Name)
     }
 
-    static ToDtos(entities: any[]): PermissionDTO[] {
+    static ToDtos(models: any[]): PermissionDTO[] {
         let items = [];
-        for(let i = 0; i < entities.length; i++){
-            const entity = entities[i];
+        for(let i = 0; i < models.length; i++){
+            const entity = models[i];
             items.push(PermissionMapper.ToDto(entity))
         }
         return items;
